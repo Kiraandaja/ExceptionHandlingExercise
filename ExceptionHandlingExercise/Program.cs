@@ -6,6 +6,8 @@ namespace ExceptionHandlingExercise
 {
     class Program
     {
+        private static object item;
+
         static void Main(string[] args)
         {
             // -----------------------------------------------------------------------------
@@ -18,9 +20,31 @@ namespace ExceptionHandlingExercise
             // Below we will set this up 
             // ------------------------------------------------------------------------------
 
-
+            var arr = new char[] { '1', '2', '3', '4', '5', '6', 'a', 'b', 'c' };
+            var numbers = new List<int>();
+            var str = "";
 
             //TODO START HERE:
+            foreach(var item in arr)
+            {
+                int number;
+                try
+                {
+                    str = item.ToString();
+                     number = int.Parse(str);
+
+                    numbers.Add(number);
+
+                }catch (Exception e)
+                {
+
+                    Console.WriteLine($"Unable to Parse '{item}'");
+                }
+                finally
+                {
+                    Console.WriteLine(item);
+                }
+            }
             
             // Make a foreach loop to iterate through your character array
             
@@ -35,14 +59,14 @@ namespace ExceptionHandlingExercise
                 // catch your Exception:
                 // in the scope of your catch you can use the following, 
                 
-                    //Console.WriteLine($"Unable to Parse '{character}'"); //character will be the name of each item in your collection
+                    //character will be the name of each item in your collection
                 
             
 
-            //foreach (var num in numbers)
-            //{
-            //    Console.WriteLine(num);
-            //}
+            foreach (var num in numbers)
+            {
+                Console.WriteLine(num);
+            }
         }
     }
 }
